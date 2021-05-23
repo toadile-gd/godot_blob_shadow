@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://base_shadow.tres" type="Material" id=1]
+[ext_resource path="res://cutout_shadow.tres" type="Material" id=2]
+
+[sub_resource type="CylinderMesh" id=1]
+material = ExtResource( 1 )
+radial_segments = 16
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="root" type="Spatial"]
+
+[node name="shadow" type="Position3D" parent="."]
+transform = Transform( 0.294, 0, 0, 0, 10, 0, 0, 0, 0.294, 0, 0.01, 0 )
+
+[node name="base" type="MeshInstance" parent="shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+cast_shadow = 0
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="cutout" type="MeshInstance" parent="shadow/base"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000701427 )
+cast_shadow = 0
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="geo" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.804097, -1.55772, 0 )
+mesh = SubResource( 2 )
+material/0 = null
